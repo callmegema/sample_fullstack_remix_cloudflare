@@ -1,18 +1,38 @@
-# Welcome to Remix + Vite!
+# Welcome to Fullstack Remix Sample(Remix + Vite + Prisma)!
 
-📖 See the [Remix docs](https://remix.run/docs) and the [Remix Vite docs](https://remix.run/docs/en/main/future/vite) for details on supported features.
+📖 See the docs
+- [Remix docs](https://remix.run/docs)
+- [Remix Vite docs](https://remix.run/docs/en/main/future/vite)
+- [Prisma docs](https://www.prisma.io/docs/orm)
 
-## Typegen
+## Test
 
-Generate types for your Cloudflare bindings in `wrangler.toml`:
-
+Setup Database
 ```sh
-npm run typegen
+docker compose -f docker-compose.local.yml up
 ```
 
-You will need to rerun typegen whenever you make changes to `wrangler.toml`.
+DB migrate
+```sh
+NODE_ENV=test DATABASE_URL=mysql://root:@localhost:3307/eden_test npx prisma migrate reset --force
+```
+
+Run Test
+```sh
+NODE_ENV=test DATABASE_URL=mysql://root:@localhost:3307/eden_test npm test
+```
 
 ## Development
+
+Setup Database
+```sh
+docker compose -f docker-compose.local.yml up
+```
+
+DB migrate
+```sh
+NODE_ENV=test DATABASE_URL=mysql://root:@localhost:3307/eden_test npx prisma migrate reset --force
+```
 
 Run the Vite dev server:
 
@@ -27,9 +47,19 @@ npm run build
 npm run start
 ```
 
+## Typegen
+
+Generate types for your Cloudflare bindings in `wrangler.toml`:
+
+```sh
+npm run typegen
+```
+
+You will need to rerun typegen whenever you make changes to `wrangler.toml`.
+
 ## Deployment
 
-> [!WARNING]  
+> [!WARNING]
 > Cloudflare does _not_ use `wrangler.toml` to configure deployment bindings.
 > You **MUST** [configure deployment bindings manually in the Cloudflare dashboard][bindings].
 
