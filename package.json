@@ -12,7 +12,8 @@
     "typecheck": "tsc",
     "typegen": "wrangler types",
     "test": "vitest",
-    "spec": "vitest"
+    "spec": "vitest",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@remix-run/cloudflare": "^2.7.2",
